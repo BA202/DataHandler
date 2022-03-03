@@ -10,5 +10,6 @@ setup(
 
     py_modules=['data_handler'],
     license='MIT',
-    description="A interface to load data from a local server"
+    description="A interface to load data from a local server",
+    py_modules=['DataHandler']
 )
