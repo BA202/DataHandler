@@ -2,8 +2,8 @@
 
 from distutils.core import setup
 
-version = "0.3.1"
-setup(name='data_handler',
+version = "1.0.0"
+setup(name='DataHandler',
       version=version,
       description='Command line utilities for data analysis',
       author='Tobias Rothlin',
