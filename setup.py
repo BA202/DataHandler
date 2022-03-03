@@ -8,8 +8,7 @@ setup(
     author='Tobias Rothlin',
     author_email='tobias@rothlin.com',
 
-    py_modules=['data_handler'],
+    py_modules=['DataHandler'],
     license='MIT',
-    description="A interface to load data from a local server",
-    py_modules=['DataHandler']
+    description="A interface to load data from a local server"
 )
