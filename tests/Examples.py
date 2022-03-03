@@ -1,4 +1,4 @@
-from DataHandler import DataHandler
+from data_handler_package.DataHandler import DataHandler
 
 
 myDataHandler = DataHandler("/Users/tobiasrothlin/Documents/BachelorArbeit/DataSets/ClassifiedDataSetV1.1")
