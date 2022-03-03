@@ -1,6 +1,5 @@
-#!/usr/bin/env python
 
-from distutils.core import setup
+from setuptools import setup, find_packages
 
 version = "1.0.0"
 setup(name='DataHandler',
@@ -9,4 +8,5 @@ setup(name='DataHandler',
       author='Tobias Rothlin',
       author_email='tobias@rothlin.com',
       url='https://github.com/BA202/DataHandler/DataHandler',
+      packages=find_packages(),
      )
