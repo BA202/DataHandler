@@ -150,7 +150,7 @@ class DataHandler:
 
 
     def __getDataFromServer(self):
-        url = "http://152.96.24.231:81/backend/getAllData"
+        url = "http://152.96.24.231:81/backend/getAllTraningData"
         response = requests.request("GET", url)
         return json.loads(response.text)
 
