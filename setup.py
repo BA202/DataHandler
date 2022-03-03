@@ -8,5 +8,5 @@ setup(
     author='Tobias Rothlin',
     author_email='tobias@rothlin.com',
 
-    py_modules=['DataHandler'],
+    py_modules=['data_handler'],
 )
