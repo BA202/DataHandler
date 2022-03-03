@@ -8,5 +8,5 @@ setup(name='DataHandler',
       description='Command line utilities for data analysis',
       author='Tobias Rothlin',
       author_email='tobias@rothlin.com',
-      url='https://github.com/BA202/DataHandler',
+      url='https://github.com/BA202/DataHandler/DataHandler',
      )
