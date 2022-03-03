@@ -1,23 +1,18 @@
-from setuptools import setup, find_packages
+import setuptools
 
-from my_pip_package import __version__
+with open("README.md", "r", encoding="utf-8") as fh:
+    long_description = fh.read()
 
-setup(
-    name='data_handler_package',
-    version=__version__,
-
-    url='https://github.com/BA202/DataHandler',
+setuptools.setup(
+    name='data_handler',
+    version='0.0.3',
     author='Tobias Rothlin',
     author_email='tobias@rothlin.com',
-
-    py_modules=['DataHandler'],
+    description='Testing installation of Package',
+    long_description=long_description,
+    long_description_content_type="text/markdown",
+    url='https://github.com/BA202/DataHandler',
     license='MIT',
-    packages=find_packages(),
-    description="A interface to load data from a local server",
-        classifiers=[
-        'Intended Audience :: Developers',
-
-        'Programming Language :: Python',
-        'Programming Language :: Python :: 3',
-    ],
+    packages=['toolbox'],
+    install_requires=['requests'],
 )
