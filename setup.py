@@ -1,20 +1,12 @@
-import setuptools
+#!/usr/bin/env python
 
-with open("README.md", "r", encoding="utf-8") as fh:
-    long_description = fh.read()
+from distutils.core import setup
 
-version='0.0.3'
-
-setuptools.setup(
-    name='data_handler',
-    version='0.0.3',
-    author='Tobias Rothlin',
-    author_email='tobias@rothlin.com',
-    description='Testing installation of Package',
-    long_description=long_description,
-    long_description_content_type="text/markdown",
-    url='https://github.com/BA202/DataHandler',
-    license='MIT',
-    packages=['toolbox'],
-    install_requires=['requests'],
-)
+version = "0.3.1"
+setup(name='data_handler',
+      version=version,
+      description='Command line utilities for data analysis',
+      author='Tobias Rothlin',
+      author_email='tobias@rothlin.com',
+      url='https://github.com/BA202/DataHandler',
+     )
