@@ -19,7 +19,7 @@ class DataHandler:
         self.__possibleCats = ["Location","Room","Food","Staff","ReasonForStay", "GeneralUtility","HotelOrganisation", "Unknown"]
 
 
-    def getScoreData(self):
+    def getScoreData(self, balanceDataset = False):
         """
          Returns a dataset containing all sentences and corresponsing Score/Sentiment.
 
@@ -52,9 +52,13 @@ class DataHandler:
             listOfSen,DictOfClass = self.__getDataFromFiles()
             for sentence,i in zip(listOfSen, range(len(listOfSen))):
                 scoreData.append([sentence,DictOfClass[i+1][0][0]])
-        return scoreData
 
-    def getContentTypeData(self):
+        if balanceDataset:
+            return self.__balanceDataSet(scoreData)
+        else:
+            return scoreData
+
+    def getContentTypeData(self,balanceDataset = False):
         """
          Returns a dataset containing all sentences and corresponsing ContentType.
 
@@ -88,10 +92,13 @@ class DataHandler:
             listOfSen,DictOfClass = self.__getDataFromFiles()
             for sentence,i in zip(listOfSen, range(len(listOfSen))):
                 contentTypeData.append([sentence,DictOfClass[i+1][0][2]])
-        return contentTypeData
+        if balanceDataset:
+            return self.__balanceDataSet(contentTypeData)
+        else:
+            return contentTypeData
 
 
-    def getCategorieData(self,cat):
+    def getCategorieData(self,cat, balanceDataset = False):
         """
           Returns a dataset containing all sentences and corresponsing categorie.
 
@@ -146,7 +153,10 @@ class DataHandler:
                     categorieData.append([sentence,cat])
                 else:
                     categorieData.append([sentence,listOfPossibleClassification[0]])
-        return categorieData
+        if balanceDataset:
+            return self.__balanceDataSet(categorieData)
+        else:
+            return categorieData
 
 
     def __getDataFromServer(self):
@@ -171,3 +181,21 @@ class DataHandler:
 
         return (sentencesAsList,classificationAsDict)
 
+    def __balanceDataSet(self, dataSet):
+        balancedDataset = dataSet
+        dataCount = {data[1]: 0 for data in dataSet}
+        dataSortedByCat = {data[1]: [] for data in dataSet}
+        for data in dataSet:
+            dataCount[data[1]] += 1
+            dataSortedByCat[data[1]].append([data[0],data[1]])
+
+        numberOfMaxSampels = 0
+        for key in dataCount.keys():
+            if numberOfMaxSampels <= dataCount[key]:
+                numberOfMaxSampels = dataCount[key]
+
+        for key in dataCount.keys():
+            for i in range(numberOfMaxSampels-dataCount[key]):
+                balancedDataset.append(dataSortedByCat[key][i%len(dataSortedByCat[key])])
+
+        return balancedDataset
