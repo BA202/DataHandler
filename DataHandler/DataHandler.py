@@ -54,7 +54,7 @@ class DataHandler:
                 scoreData.append([sentence,DictOfClass[i+1][0][0]])
 
         if balanceDataset:
-            return self.__balanceDataSet(scoreData)
+            return self.balanceDataSet(scoreData)
         else:
             return scoreData
 
@@ -93,7 +93,7 @@ class DataHandler:
             for sentence,i in zip(listOfSen, range(len(listOfSen))):
                 contentTypeData.append([sentence,DictOfClass[i+1][0][2]])
         if balanceDataset:
-            return self.__balanceDataSet(contentTypeData)
+            return self.balanceDataSet(contentTypeData)
         else:
             return contentTypeData
 
@@ -154,7 +154,7 @@ class DataHandler:
                 else:
                     categorieData.append([sentence,listOfPossibleClassification[0]])
         if balanceDataset:
-            return self.__balanceDataSet(categorieData)
+            return self.balanceDataSet(categorieData)
         else:
             return categorieData
 
@@ -181,7 +181,7 @@ class DataHandler:
 
         return (sentencesAsList,classificationAsDict)
 
-    def __balanceDataSet(self, dataSet):
+    def balanceDataSet(self, dataSet):
         balancedDataset = dataSet
         dataCount = {data[1]: 0 for data in dataSet}
         dataSortedByCat = {data[1]: [] for data in dataSet}
