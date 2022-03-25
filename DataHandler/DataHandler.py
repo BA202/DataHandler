@@ -181,7 +181,8 @@ class DataHandler:
 
         return (sentencesAsList,classificationAsDict)
 
-    def balanceDataSet(self, dataSet):
+    @staticmethod
+    def balanceDataSet(dataSet):
         balancedDataset = dataSet
         dataCount = {data[1]: 0 for data in dataSet}
         dataSortedByCat = {data[1]: [] for data in dataSet}
