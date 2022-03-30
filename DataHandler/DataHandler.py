@@ -199,6 +199,6 @@ class DataHandler:
 
         for key in dataCount.keys():
             for i in range(numberOfMaxSampels-dataCount[key]):
-                balancedDataset.append(dataSortedByCat[key][random.randint(0,len(dataSortedByCat[key]))])
+                balancedDataset.append(dataSortedByCat[key][random.randint(0,len(dataSortedByCat[key])-1)])
 
         return balancedDataset
