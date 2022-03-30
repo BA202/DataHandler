@@ -1,5 +1,6 @@
 import requests
 import json
+import random
 
 class DataHandler:
 
@@ -182,7 +183,8 @@ class DataHandler:
         return (sentencesAsList,classificationAsDict)
 
     @staticmethod
-    def balanceDataSet(dataSet):
+    def balanceDataSet(dataSet, seed = 100):
+        random.seed(seed)
         balancedDataset = dataSet
         dataCount = {data[1]: 0 for data in dataSet}
         dataSortedByCat = {data[1]: [] for data in dataSet}
@@ -197,6 +199,6 @@ class DataHandler:
 
         for key in dataCount.keys():
             for i in range(numberOfMaxSampels-dataCount[key]):
-                balancedDataset.append(dataSortedByCat[key][i%len(dataSortedByCat[key])])
+                balancedDataset.append(dataSortedByCat[key][random.randint(0,len(dataSortedByCat[key]))])
 
         return balancedDataset
