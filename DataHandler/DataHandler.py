@@ -4,7 +4,7 @@ import random
 
 class DataHandler:
 
-    def __init__(self,folderPath = ""):
+    def __init__(self,folderPath = "", lan="English"):
         """
         Depending on the optional parameter folderPath the data will be loaded localy or from the central server.\n
 
@@ -17,6 +17,7 @@ class DataHandler:
             specifies the location of the folder containing the three .tsv files
         """
         self.__folderPath = folderPath
+        self.__lan = lan
         self.__possibleCats = ["Location","Room","Food","Staff","ReasonForStay", "GeneralUtility","HotelOrganisation", "Unknown"]
 
 
@@ -161,7 +162,7 @@ class DataHandler:
 
 
     def __getDataFromServer(self):
-        url = "http://152.96.24.231:81/backend/getAllTraningData"
+        url = f"http://152.96.24.231:81/backend/getAllTraningData?lan={self.__lan}"
         response = requests.request("GET", url)
         return json.loads(response.text)
 
