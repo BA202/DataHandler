@@ -168,18 +168,21 @@ class DataHandler:
 
 
     def __getDataFromFiles(self):
+        firstIndex = None
         sentencesAsList = []
-        with open(self.__folderPath +"/ReviewSentences.tsv") as sentencesFile:
+        with open(self.__folderPath +"/ReviewSentences.tsv", encoding='utf-8') as sentencesFile:
             sentencesAsList = [sen.split('\t')[0] for sen in sentencesFile.read().split('\n')]
 
         classificationAsDict = {}
-        with open(self.__folderPath +"/ClassificationResult.tsv")as classificationFile:
+        with open(self.__folderPath +"/ClassificationResult.tsv", encoding='utf-8')as classificationFile:
             for  classification in classificationFile.read().split('\n'):
                 classificationsInLine = classification.split('\t')
-                if int(classificationsInLine[6]) in classificationAsDict.keys():
-                    classificationAsDict[int(classificationsInLine[6])].append([classificationsInLine[0],classificationsInLine[2],classificationsInLine[4]])
+                if firstIndex == None:
+                    firstIndex = int(classificationsInLine[6])
+                if (int(classificationsInLine[6])-firstIndex+1) in classificationAsDict.keys():
+                    classificationAsDict[(int(classificationsInLine[6])-firstIndex+1)].append([classificationsInLine[0],classificationsInLine[2],classificationsInLine[4]])
                 else:
-                    classificationAsDict[int(classificationsInLine[6])] = [[classificationsInLine[0],classificationsInLine[2],classificationsInLine[4]]]
+                    classificationAsDict[(int(classificationsInLine[6])-firstIndex+1)] = [[classificationsInLine[0],classificationsInLine[2],classificationsInLine[4]]]
 
         return (sentencesAsList,classificationAsDict)
 

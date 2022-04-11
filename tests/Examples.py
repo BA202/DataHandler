@@ -40,3 +40,20 @@ for sentence in categorieList[36:39]:
     print(f"{sentence[0]:100}|{sentence[1]}\u001b[0m")
 
 print("-"*118, "\n")
+
+
+myDataHandler = DataHandler("/Users/tobiasrothlin/Documents/BachelorArbeit/DataSets/ClassifiedDataSetDeutschV1.4")
+
+print(myDataHandler.getScoreData())
+
+myDataHandler = DataHandler("/Users/tobiasrothlin/Documents/BachelorArbeit/DataSets/ClassifiedDataSetDeutschV1.4")
+
+print(myDataHandler.getCategorieData("Location"))
+
+myDataHandler = DataHandler("/Users/tobiasrothlin/Documents/BachelorArbeit/DataSets/ClassifiedDataSetV1.3")
+
+print(myDataHandler.getCategorieData("Location"))
+
+myDataHandler = DataHandler("/Users/tobiasrothlin/Documents/BachelorArbeit/DataSets/ClassifiedDataSetV1.3")
+
+print(myDataHandler.getScoreData())
