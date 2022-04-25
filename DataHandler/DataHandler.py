@@ -100,7 +100,7 @@ class DataHandler:
             return contentTypeData
 
 
-    def getCategorieData(self,cat, balanceDataset = False):
+    def getCategorieData(self,cat, balanceDataset = False,multilablel = False):
         """
           Returns a dataset containing all sentences and corresponsing categorie.
 
@@ -140,21 +140,28 @@ class DataHandler:
                     listOfPossibleClassification = []
                     for classificationKey in classifications.keys():
                         listOfPossibleClassification.append(classifications[classificationKey]["Classification"])
-
-                    if cat in listOfPossibleClassification :
-                        categorieData.append([sentences[senKey]['Sentence'],cat])
+                    if not multilablel:
+                        if cat in listOfPossibleClassification :
+                            categorieData.append([sentences[senKey]['Sentence'],cat])
+                        else:
+                            categorieData.append([sentences[senKey]['Sentence'], listOfPossibleClassification[0]])
                     else:
-                        categorieData.append([sentences[senKey]['Sentence'], listOfPossibleClassification[0]])
+                        for categoire in listOfPossibleClassification:
+                            categorieData.append([sentences[senKey]['Sentence'], categoire])
         else:
             listOfSen,DictOfClass = self.__getDataFromFiles()
             for sentence,i in zip(listOfSen, range(len(listOfSen))):
                 listOfPossibleClassification = []
                 for classification in DictOfClass[i+1]:
                     listOfPossibleClassification.append(classification[1])
-                if cat in listOfPossibleClassification:
-                    categorieData.append([sentence,cat])
+                if not multilablel:
+                    if cat in listOfPossibleClassification:
+                        categorieData.append([sentence,cat])
+                    else:
+                        categorieData.append([sentence,listOfPossibleClassification[0]])
                 else:
-                    categorieData.append([sentence,listOfPossibleClassification[0]])
+                    for categoire in listOfPossibleClassification:
+                        categorieData.append([sentence, categoire])
         if balanceDataset:
             return self.balanceDataSet(categorieData)
         else:

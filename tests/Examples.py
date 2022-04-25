@@ -34,7 +34,7 @@ print("-"*118, "\n")
 
 #Get Categorie
 print("CategorieData:")
-categorieList = myDataHandler.getCategorieData('Staff',True)
+categorieList = myDataHandler.getCategorieData('Room',True,False)
 print(f"\u001b[4m\u001b[1m{'Sentence  [0]':100} Categorie  [1]\u001b[0m")
 for sentence in categorieList[36:39]:
     print(f"{sentence[0]:100}|{sentence[1]}\u001b[0m")
